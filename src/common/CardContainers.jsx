@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import {
+  BP_TABLET} from './cssVars';
 export const CardContainer = styled.div`
   display: flex;
   background: #ffffff;
   border-radius: 16px;
   filter: drop-shadow(0px 23.7736px 63.3962px rgba(0, 0, 0, 0.06));
   margin-bottom: 30px;
-  @media (max-width: 768px) {
+  @media (max-width: ${BP_TABLET}) {
     flex-direction: column;
     border-radius: 15.8491px;
   }
@@ -20,7 +22,7 @@ export const AvatarContainer = styled.div`
   img {
     margin: 25px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: ${BP_TABLET}) {
     border-radius: 15.8491px 15.8491px 0px 0px;
     width: 100%;
     img {

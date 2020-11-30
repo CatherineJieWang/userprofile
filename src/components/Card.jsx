@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import addressicon from "./icons/address.svg";
 import avataricon from "./icons/avatar.svg";
 import emailicon from "./icons/email.svg";
@@ -7,11 +7,16 @@ import logo from "./icons/logo.svg";
 import phoneicon from "./icons/phone.svg";
 import { NormalContainer, NormalInfo } from "../common/Normal";
 import { Button } from "../common/Button";
-import {CardContainer,AvatarContainer,InfoContainer,LogoContainer} from '../common/CardContainers'
+import {
+  CardContainer,
+  AvatarContainer,
+  InfoContainer,
+  LogoContainer,
+} from "../common/CardContainers";
 
 //{TODO: UPDATE USER PROFILE}
-// import { updateContact} from "../actions/contactAction";
-// import { useDispatch } from 'react-redux';
+// import { updateContact } from "../actions/contactAction";
+// import { useDispatch } from "react-redux";
 
 const iconMap = {
   email: emailicon,
@@ -32,13 +37,12 @@ export default function Card(props) {
   const { name } = props.data;
   const index = props.index;
   // const dispatch = useDispatch();
-  // function updateinfo(e,namespace,fn){
+  // function updateinfo(e, namespace, fn) {
   //   e.preventDefault();
-  //   let contact = props.data
-  //   contact[namespace] = e.target.value
-  //   fn(e.target.value)
-  //   dispatch(updateContact(index,contact))
-
+  //   let contact = props.data;
+  //   contact['email'] = e.target.value;
+  //   setEmail(e.target.value);
+  //   dispatch(updateContact(index, contact));
   // }
   return (
     <CardContainer>
@@ -52,9 +56,7 @@ export default function Card(props) {
           return (
             <NormalContainer key={i}>
               <img src={iconMap[key]} alt={key} />
-              <NormalInfo>
-                {props.data[key] || defaultMap[key]}
-              </NormalInfo>
+              <NormalInfo>{props.data[key] || defaultMap[key]}</NormalInfo>
             </NormalContainer>
           );
         })}

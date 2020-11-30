@@ -1,15 +1,9 @@
 import styled from "styled-components";
-export const NormalInfo = styled.span`
+export const NormalInfo = styled.div`
   font-size: 12px;
   line-height: 15px;
   color: #374a59;
   margin-left: 15px;
-  @media (max-width: 768px) {
-    font-size: 12px;
-    line-height: 15px;
-    color: #374a59;
-    margin-left: 15px;
-  }
 `;
 
 export const NormalContainer = styled.div`
