@@ -1,36 +1,42 @@
-import React, { useState } from "react";
-import { createContact, deleteContact } from "./actions/contactAction";
-import { useDispatch, useSelector } from 'react-redux';
-import {ListCardContainer, ListContainer}  from './common/List'
-import {Cover} from './common/Cover'
-import {Input,SubmitInput} from './common/Input'
+import React, { useEffect, useState } from "react";
+import {
+  createContact,
+  deleteContact,
+  fetchAllContact,
+} from "./actions/contactAction";
+import { useDispatch, useSelector } from "react-redux";
+import { ListCardContainer, ListContainer } from "./common/List";
+import { Cover } from "./common/Cover";
+import { Input, SubmitInput } from "./common/Input";
 import Card from "./components/Card";
 function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector((state) => state.contacts);
+  useEffect(() => {
+    dispatch(fetchAllContact());
+  }, []);
   function handlenameChange(e) {
     setName(e.target.value);
   }
   function handleemailChange(e) {
     setEmail(e.target.value);
   }
-
   function handleSubmit(e) {
     e.preventDefault();
     let contact = {
       name: name,
-      email:email
+      email: email,
     };
     setName("");
     setEmail("");
-    dispatch(createContact(contact))
+    dispatch(createContact(contact));
   }
 
   function removeContact(e, index) {
     e.preventDefault();
-    dispatch(deleteContact(index))
+    dispatch(deleteContact(index));
   }
 
   return (
@@ -51,6 +57,7 @@ function App() {
           <ListContainer>
             {contacts.length > 0 ? (
               contacts.map((contact, i) => (
+                
                 <ListCardContainer key={i}>
                   <Card
                     data={contact}

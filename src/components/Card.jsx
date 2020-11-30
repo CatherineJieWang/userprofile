@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import addressicon from "./icons/address.svg";
 import avataricon from "./icons/avatar.svg";
 import emailicon from "./icons/email.svg";
@@ -22,7 +22,7 @@ const iconMap = {
   email: emailicon,
   address: addressicon,
   phone: phoneicon,
-  link: linkicon,
+  website: linkicon,
 };
 
 const defaultMap = {
@@ -30,17 +30,22 @@ const defaultMap = {
   email: "maida.Becker98@gmail.com",
   address: "Cermin Plains St,Apt.462, North Connortown, 99373",
   phone: "(293)414-8005",
-  link: "marianne.org",
+  website: "marianne.org",
 };
 
 export default function Card(props) {
-  const { name } = props.data;
+  const { name, address } = props.data;
+  // const [email, setEmail] = useState(props.data ? props.data.email : "");
+  let finaladdress = defaultMap["address"];
+  if (address) {
+    finaladdress = address.city + address.street;
+  }
   const index = props.index;
   // const dispatch = useDispatch();
-  // function updateinfo(e, namespace, fn) {
+  // function updateinfo(e, namespace) {
   //   e.preventDefault();
   //   let contact = props.data;
-  //   contact['email'] = e.target.value;
+  //   contact[namespace] = e.target.value;
   //   setEmail(e.target.value);
   //   dispatch(updateContact(index, contact));
   // }
@@ -56,7 +61,11 @@ export default function Card(props) {
           return (
             <NormalContainer key={i}>
               <img src={iconMap[key]} alt={key} />
-              <NormalInfo>{props.data[key] || defaultMap[key]}</NormalInfo>
+              <NormalInfo>
+                {key === "address"
+                  ? finaladdress
+                  : props.data[key] || defaultMap[key]}
+              </NormalInfo>
             </NormalContainer>
           );
         })}
